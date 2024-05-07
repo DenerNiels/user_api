@@ -1,0 +1,78 @@
+import { Env } from '@athenna/config'
+
+export default {
+  /*
+  |--------------------------------------------------------------------------
+  | Default Database Connection Name
+  |--------------------------------------------------------------------------
+  |
+  | Here you may specify which of the database connections below you wish
+  | to use as your default connection for all database work. Of course
+  | you may use many connections at once using the Database library.
+  |
+  */
+
+  default: Env('DB_CONNECTION', ''),
+
+  /*
+  |--------------------------------------------------------------------------
+  | Database Connections
+  |--------------------------------------------------------------------------
+  |
+  | Here are each of the database connections setup for your application.
+  | Of course, examples of configuring each database platform that is
+  | supported by Athenna is shown below to make development simple.
+  |
+  */
+
+  connections: {
+    sqlite: {
+      driver: 'sqlite',
+      connection: {
+        filename: Env('DB_FILENAME', ':memory:')
+      },
+      debug: Env('DB_DEBUG', false)
+    },
+
+    mysql: {
+      driver: 'mysql',
+      connection: {
+        host: Env('DB_HOST', 'localhost'),
+        port: Env('DB_PORT', 3306),
+        user: Env('DB_USERNAME', 'root'),
+        password: Env('DB_PASSWORD', 'root'),
+        database: Env('DB_DATABASE', 'athenna')
+      },
+      debug: Env('DB_DEBUG', false)
+    },
+
+    postgres: {
+      driver: 'postgres',
+      connection: {
+        host: Env('DB_HOST', 'localhost'),
+        port: Env('DB_PORT', 5432),
+        user: Env('DB_USERNAME', 'root'),
+        password: Env('DB_PASSWORD', 'root'),
+        database: Env('DB_DATABASE', 'athenna')
+      },
+      debug: Env('DB_DEBUG', false)
+    },
+
+    mongo: {
+      driver: 'mongo',
+      url: Env('DB_URL', 'mongodb://root:root@localhost:27017/admin'),
+      w: 'majority',
+      retryWrites: true,
+      debug: Env('DB_DEBUG', false)
+    },
+
+    fake: {
+      driver: 'fake',
+      validations: {
+        isToSetAttributes: true,
+        isToValidateUnique: false,
+        isToValidateNullable: false
+      }
+    }
+  }
+}
