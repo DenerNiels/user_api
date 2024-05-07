@@ -12,4 +12,11 @@ export class UserController {
     const users = await this.userService.getAll()
     return response.status(200).send(users)
   }
+
+  public async store({ response, request }: Context) {
+    const data = request.only(['name', 'email', 'password'])
+    const user = await this.userService.create(data)
+
+    return response.status(200).send(user)
+  }
 }

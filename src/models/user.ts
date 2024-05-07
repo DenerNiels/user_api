@@ -10,6 +10,6 @@ export class User extends BaseModel {
   @Column({ isNullable: false, isUnique: true })
   public email: string
 
-  @Column({ isNullable: false, isHidden: true })
+  @Column({ isNullable: false, isHidden: false })
   public password: string
 }
