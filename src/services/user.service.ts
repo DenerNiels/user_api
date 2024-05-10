@@ -8,6 +8,14 @@ export class UserService {
     return User.findMany()
   }
 
+  public async getById(Id: string) {
+    return User.query().where('id', Id).find()
+  }
+
+  public async getByEmail(Email: string) {
+    return User.query().where('email', Email).find()
+  }
+
   public async create(data: Partial<User>) {
     data.password = await bcrypt.hash(data.password, 10)
     const user = await User.create(data)
